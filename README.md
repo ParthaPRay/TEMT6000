@@ -9,5 +9,10 @@ Figure 1. Collector Light Current vs. Illuminance of the TEMT6000 datasheet show
 
 ![Screenshot from 2023-08-21 17-26-27](https://github.com/ParthaPRay/TEMT6000/assets/1689639/6c47f4e7-e6fd-4d25-b4b5-26beb0129442)
 
-In the above plot, we can see that relationship between I<sub>ca</sub> and E<sub>v</sub>
+In the above plot, we can see a linear relationship between I<sub>ca</sub> and E<sub>v</sub>. That suggests a power-law elationship, which can be described as:
+I=k×L<sup>m</sup> 
+
+ 
+
+
 
