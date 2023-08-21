@@ -35,7 +35,7 @@ L = (I/k)​<sup>(1/m)</sup>    equation (3)
 
 
 
-1. Reading Analog Value:
+**1. Reading Analog Value:**
 
 int analogValue = analogRead(temt6000Pin);
 
@@ -43,7 +43,7 @@ Explanation:
 
 The Arduino uses an analog-to-digital converter (ADC) to transform the analog voltage (from the TEMT6000 sensor) into a digital value. This ADC on most Arduinos is a 10-bit ADC, meaning it can represent voltages with integers ranging from 0 to 1023.
 
-2. Convert ADC Value to Voltage:
+**2. Convert ADC Value to Voltage:**
 
 float voltage = (analogValue * referenceVoltage) / 1023.0;
 
@@ -52,7 +52,7 @@ Given that the ADC provides values between 0 (for 0V) and 1023 (for the referenc
 
 voltage = (analogValue × referenceVoltage)/1023
  
-3. Convert Voltage to Current:
+**3. Convert Voltage to Current:**
 
 float currentInMicroA = voltage / resistorValue * 1E6;
 
@@ -65,7 +65,7 @@ I is the current,
 V is the voltage across the resistor, and 
 R is the resistor value. We then multiply by 10<sup>6</sup> i.e. 1E6 to convert the current from amperes to microamperes.
 
-4. Calculate Illuminance using the Power-Law Relationship:
+**4. Calculate Illuminance using the Power-Law Relationship:**
 
 float k = 0.03162;
 
@@ -88,7 +88,7 @@ k is the proportionality constant and
 
 m is the exponent, which was inferred to be 1.5 based on the logarithmic plot.
 
-5. Constrain Illuminance:
+**5. Constrain Illuminance:**
 
 
 illuminance = constrain(illuminance, 10, 1000);
