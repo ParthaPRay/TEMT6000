@@ -11,7 +11,7 @@ Figure 1. Collector Light Current vs. Illuminance of the TEMT6000 datasheet show
 
 In the above plot, we can see a linear relationship between I<sub>ca</sub> and E<sub>v</sub>. That suggests a power-law elationship, which can be described as:
 
-I = k×L<sup>m</sup> 
+I = k×L<sup>m</sup>         equation (1)
 
 Where:
 * I is the collector light current.
@@ -21,8 +21,10 @@ Where:
 
 On the above plot, Considering the data point provided (100 lux corresponds to 10<sup>1.5</sup> or approximately 31.62 µA), we can determine the value of k.
 
-k = (I/L<sup>m</sup>)
+k = (I/L<sup>m</sup>)     equation (2)
 
+We put: L = 100  #lux, I = 31.62 #µA, and m = 1.5 
+we get, k = 0.03162 from the above formula (2).
  
 
 
