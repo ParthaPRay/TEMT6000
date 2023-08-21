@@ -35,3 +35,66 @@ L = (I/k)​<sup>(1/m)</sup>    equation (3)
 
 
 
+1. Reading Analog Value:
+
+int analogValue = analogRead(temt6000Pin);
+
+Explanation:
+
+The Arduino uses an analog-to-digital converter (ADC) to transform the analog voltage (from the TEMT6000 sensor) into a digital value. This ADC on most Arduinos is a 10-bit ADC, meaning it can represent voltages with integers ranging from 0 to 1023.
+
+2. Convert ADC Value to Voltage:
+
+float voltage = (analogValue * referenceVoltage) / 1023.0;
+
+
+Given that the ADC provides values between 0 (for 0V) and 1023 (for the reference voltage, usually 5V or 3.3V), we can map the analogValue to an actual voltage using:
+
+voltage = (analogValue × referenceVoltage)/1023
+ 
+3. Convert Voltage to Current:
+
+float currentInMicroA = voltage / resistorValue * 1E6;
+
+The TEMT6000 provides a current output proportional to the light intensity. This current passes through a resistor (10kΩ in our case), creating a voltage drop. Ohm's Law (V = I * R) allows us to compute the current:
+
+I = (V/R)
+
+Here, 
+I is the current, 
+V is the voltage across the resistor, and 
+R is the resistor value. We then multiply by 10<sup>6</sup> i.e. 1E6 to convert the current from amperes to microamperes.
+
+4. Calculate Illuminance using the Power-Law Relationship:
+
+float k = 0.03162;
+
+float m = 1.5;
+
+float illuminance = pow(currentInMicroA / k, 1/m);
+
+
+From the logarithmic plot provided in the datasheet, we derived the power-law relationship between illuminance L (in lux) and the collector light current I (in µA) as:
+
+I = k×L<sup>m</sup>         equation (1)
+ 
+Given the current, we want to find the corresponding illuminance. Rearranging the above equation, we get:
+
+L = (I/k)​<sup>(1/m)</sup>    equation (3)
+​
+  
+Here, 
+k is the proportionality constant and 
+
+m is the exponent, which was inferred to be 1.5 based on the logarithmic plot.
+
+5. Constrain Illuminance:
+
+
+illuminance = constrain(illuminance, 10, 1000);
+
+To ensure the illuminance values are realistic and within the expected range of the sensor, we use the constrain function to limit the values between 10 and 1000 lux. If the calculated illuminance is below 10, it's set to 10; if it's above 1000, it's set to 1000.
+
+Finally, the function returns the calculated and constrained illuminance value.
+
+
