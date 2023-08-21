@@ -25,7 +25,13 @@ k = (I/L<sup>m</sup>)     equation (2)
 
 We put: L = 100  #lux, I = 31.62 #µA, and m = 1.5 
 we get, k = 0.03162 from the above formula (2).
- 
+
+
+# Arduino Code
+
+Now, to map the current to lux values in the Arduino code, we'll use this power-law relationship. Specifically, when reading the current value from the sensor, we can determine the corresponding lux value using the inverse of the relationship:
+
+L = (I/k)​<sup>(1/m)</sup>    equation (3)
 
 
 
